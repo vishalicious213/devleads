@@ -21,8 +21,8 @@ if (process.env.NODE_ENV === "production") {
   app.use((req, res, next) => {
     const host = req.headers.host;
     // redirect non-www to www 
-    if (host === "your-domain.com") {
-      return res.redirect(301, "https://www.your-domain.com" + req.originalUrl);
+    if (host === "devleads.onrender.com") {
+      return res.redirect(301, "https://www.devleads.onrender.com" + req.originalUrl);
     }
     next();
   });
@@ -52,39 +52,39 @@ app.use("/api/leads", (req, res, next) => {
 // use this for production
 // General CORS configuration for other routes
 // PRODUCTION CORS configuration - uncomment and modify for production use
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     // List of allowed origins (add your production and development URLs)
-//     const allowedOrigins = [
-//       // Production URLs
-//       "https://www.your-domain.com",
-//       "https://your-domain.com",
-//       // Development URLs
-//       "http://localhost:3000",
-//       "http://localhost:5000",
-//       "http://127.0.0.1:5000",
-//       "http://127.0.0.1:3000"
-//     ];
-
-//     // Allow requests with no origin (like mobile apps, curl requests, etc.)
-//     if (!origin) return callback(null, true);
-
-//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-//       callback(null, true);
-//     } else {
-//       console.log("CORS blocked origin:", origin);
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true,
-// };
-
 const corsOptions = {
   origin: function (origin, callback) {
-    callback(null, true); // This will allow all origins
+    // List of allowed origins (add your production and development URLs)
+    const allowedOrigins = [
+      // Production URLs
+      "https://www.devleads.onrender.com",
+      "https://devleads.onrender.com",
+      // Development URLs
+      "http://localhost:3000",
+      "http://localhost:5000",
+      "http://127.0.0.1:5000",
+      "http://127.0.0.1:3000"
+    ];
+
+    // Allow requests with no origin (like mobile apps, curl requests, etc.)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      console.log("CORS blocked origin:", origin);
+      callback(new Error("Not allowed by CORS"));
+    }
   },
   credentials: true,
 };
+
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     callback(null, true); // This will allow all origins
+//   },
+//   credentials: true,
+// };
 
 app.use(cors(corsOptions));
 
