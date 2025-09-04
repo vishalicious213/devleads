@@ -21,8 +21,8 @@ if (process.env.NODE_ENV === "production") {
   app.use((req, res, next) => {
     const host = req.headers.host;
     // redirect non-www to www 
-    if (host === "devleads.onrender.com") {
-      return res.redirect(301, "https://www.devleads.onrender.com" + req.originalUrl);
+    if (host === "your-domain.com") {
+      return res.redirect(301, "https://www.your-domain.com" + req.originalUrl);
     }
     next();
   });
@@ -57,8 +57,8 @@ app.use("/api/leads", (req, res, next) => {
 //     // List of allowed origins (add your production and development URLs)
 //     const allowedOrigins = [
 //       // Production URLs
-//       "https://www.devleads.onrender.com",
-//       "https://devleads.onrender.com",
+//       "https://www.your-domain.com",
+//       "https://your-domain.com",
 //       // Development URLs
 //       "http://localhost:3000",
 //       "http://localhost:5000",
